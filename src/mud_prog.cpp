@@ -1915,7 +1915,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
                   strcpy( t, actor->short_descr );
                else
                {
-                  strcpy( t, actor->name );
+                  strncpy( t, actor->name );
                   strcat( t, actor->pcdata->title );
                }
             }
@@ -1945,10 +1945,10 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
             if( mob->can_see( vict, false ) )
             {
                if( vict->isnpc(  ) )
-                  strcpy( t, vict->short_descr );
+                  strncpy( t, vict->short_descr );
                else
                {
-                  strcpy( t, vict->name );
+                  strncpy( t, vict->name );
                   strcat( t, vict->pcdata->title );
                }
             }
@@ -1981,10 +1981,10 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
             if( mob->can_see( rndm, false ) )
             {
                if( rndm->isnpc(  ) )
-                  strcpy( t, rndm->short_descr );
+                  strncpy( t, rndm->short_descr );
                else
                {
-                  strcpy( t, rndm->name );
+                  strncpy( t, rndm->name );
                   strcat( t, rndm->pcdata->title );
                }
             }
@@ -1997,7 +1997,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
 
       case 'e':
          if( actor && !actor->char_died(  ) )
-            mob->can_see( actor, false ) ? strcpy( t, he_she[actor->sex] ) : strcpy( t, "someone" );
+            mob->can_see( actor, false ) ? strncpy( t, he_she[actor->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "it" );
          break;
