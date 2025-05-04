@@ -3172,12 +3172,12 @@ bool rprog_wordlist_check( const string & arg, char_data * mob, char_data * acto
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
 
-         strcpy( temp2, arg.c_str(  ) );
+         strncpy( temp2, arg.c_str(  ) );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); ++i )
             dupl[i] = LOWER( dupl[i] );
