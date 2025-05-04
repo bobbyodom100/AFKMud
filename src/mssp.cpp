@@ -883,7 +883,7 @@ void mssp_reply( descriptor_data * d, const char *var, const char *fmt, ... )
    }
 
    va_start( args, fmt );
-   vsprintf( buf, fmt, args );
+   vsnprintf( buf, fmt, args );
    va_end( args );
 
    write_to_descriptor_printf( d, "%s\t%s\r\n", var, buf );
