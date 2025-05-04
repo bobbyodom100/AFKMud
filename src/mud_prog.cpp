@@ -448,7 +448,7 @@ int mprog_do_ifcheck( char *ifcheck, char_data * mob, char_data * actor, obj_dat
     * brackets, ie: if leveldiff($n, $i) > 10
     * It's also smaller, cleaner and probably faster
     */
-   strcpy( buf, ifcheck );
+   strncpy( buf, ifcheck );
    opr[0] = '\0';
    while( isspace( *p ) )
       ++p;
@@ -1881,7 +1881,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
          {
             if( mob->short_descr )
             {
-               strcpy( t, mob->short_descr );
+               strncpy( t, mob->short_descr );
             }
             else
             {
@@ -1912,7 +1912,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
             if( mob->can_see( actor, false ) )
             {
                if( actor->isnpc(  ) )
-                  strcpy( t, actor->short_descr );
+                  strncpy( t, actor->short_descr );
                else
                {
                   strncpy( t, actor->name );
@@ -2004,35 +2004,35 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
 
       case 'm':
          if( actor && !actor->char_died(  ) )
-            mob->can_see( actor, false ) ? strcpy( t, him_her[actor->sex] ) : strcpy( t, "someone" );
+            mob->can_see( actor, false ) ? strncpy( t, him_her[actor->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "it" );
          break;
 
       case 's':
          if( actor && !actor->char_died(  ) )
-            mob->can_see( actor, false ) ? strcpy( t, his_her[actor->sex] ) : strcpy( t, "someone's" );
+            mob->can_see( actor, false ) ? strncpy( t, his_her[actor->sex] ) : strcpy( t, "someone's" );
          else
             strcpy( t, "its'" );
          break;
 
       case 'E':
          if( vict && !vict->char_died(  ) )
-            mob->can_see( vict, false ) ? strcpy( t, he_she[vict->sex] ) : strcpy( t, "someone" );
+            mob->can_see( vict, false ) ? strncpy( t, he_she[vict->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "it" );
          break;
 
       case 'M':
          if( vict && !vict->char_died(  ) )
-            mob->can_see( vict, false ) ? strcpy( t, him_her[vict->sex] ) : strcpy( t, "someone" );
+            mob->can_see( vict, false ) ? strncpy( t, him_her[vict->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "it" );
          break;
 
       case 'S':
          if( vict && !vict->char_died(  ) )
-            mob->can_see( vict, false ) ? strcpy( t, his_her[vict->sex] ) : strcpy( t, "someone's" );
+            mob->can_see( vict, false ) ? strncpy( t, his_her[vict->sex] ) : strcpy( t, "someone's" );
          else
             strcpy( t, "its'" );
          break;
@@ -2040,7 +2040,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'j':
          if( mob && !mob->char_died(  ) )
          {
-            strcpy( t, he_she[mob->sex] );
+            strncpy( t, he_she[mob->sex] );
          }
          else
          {
@@ -2051,7 +2051,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'k':
          if( mob && !mob->char_died(  ) )
          {
-            strcpy( t, him_her[mob->sex] );
+            strncpy( t, him_her[mob->sex] );
          }
          else
          {
@@ -2062,7 +2062,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'l':
          if( mob && !mob->char_died(  ) )
          {
-            strcpy( t, his_her[mob->sex] );
+            strncpy( t, his_her[mob->sex] );
          }
          else
          {
@@ -2072,21 +2072,21 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
 
       case 'J':
          if( rndm && !rndm->char_died(  ) )
-            mob->can_see( rndm, false ) ? strcpy( t, he_she[rndm->sex] ) : strcpy( t, "someone" );
+            mob->can_see( rndm, false ) ? strncpy( t, he_she[rndm->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "it" );
          break;
 
       case 'K':
          if( rndm && !rndm->char_died(  ) )
-            mob->can_see( rndm, false ) ? strcpy( t, him_her[rndm->sex] ) : strcpy( t, "someone's" );
+            mob->can_see( rndm, false ) ? strncpy( t, him_her[rndm->sex] ) : strcpy( t, "someone's" );
          else
             strcpy( t, "its'" );
          break;
 
       case 'L':
          if( rndm && !rndm->char_died(  ) )
-            mob->can_see( rndm, false ) ? strcpy( t, his_her[rndm->sex] ) : strcpy( t, "someone" );
+            mob->can_see( rndm, false ) ? strncpy( t, his_her[rndm->sex] ) : strcpy( t, "someone" );
          else
             strcpy( t, "its" );
          break;
@@ -2103,7 +2103,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'O':
          if( obj && !obj->extracted(  ) )
          {
-            mob->can_see_obj( obj, false ) ? strcpy( t, obj->short_descr ) : strcpy( t, "something" );
+            mob->can_see_obj( obj, false ) ? strncpy( t, obj->short_descr ) : strcpy( t, "something" );
          }
          else
             strcpy( t, "something" );
@@ -2121,7 +2121,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'P':
          if( v_obj && !v_obj->extracted(  ) )
          {
-            mob->can_see_obj( v_obj, false ) ? strcpy( t, v_obj->short_descr ) : strcpy( t, "something" );
+            mob->can_see_obj( v_obj, false ) ? strncpy( t, v_obj->short_descr ) : strcpy( t, "something" );
          }
          else
             strcpy( t, "something" );
@@ -2130,7 +2130,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'a':
          if( obj && !obj->extracted(  ) )
          {
-            strcpy( t, aoran( obj->name ) );
+            strncpy( t, aoran( obj->name ) );
 /*
           switch ( *( obj->name ) )
 	    {
@@ -2148,7 +2148,7 @@ void mprog_translate( char ch, char *t, char_data * mob, char_data * actor, obj_
       case 'A':
          if( v_obj && !v_obj->extracted(  ) )
          {
-            strcpy( t, aoran( v_obj->name ) );
+            strncpy( t, aoran( v_obj->name ) );
          }
          else
             strcpy( t, "a" );
@@ -2842,10 +2842,10 @@ bool mprog_keyword_check( const string & argu, const char *argl )
    char word[MIL], arg1[MIL], arg2[MIL];
    char *arg, *arglist, *start, *end;
 
-   strcpy( arg1, argu.c_str(  ) );
+   strncpy( arg1, argu.c_str(  ) );
    arg = strlower( arg1 );
 
-   strcpy( arg2, argl );
+   strncpy( arg2, argl );
    arglist = strlower( arg2 );
 
    if( ( arglist[0] == 'p' ) && ( arglist[1] == ' ' ) )
@@ -2889,12 +2889,12 @@ bool mprog_and_wordlist_check( const string & arg, char_data * mob, char_data * 
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
 
-         strcpy( temp2, arg.c_str(  ) );
+         strncpy( temp2, arg.c_str(  ) );
          dupl = temp2;
 
          for( i = 0; i < strlen( dupl ); ++i )
@@ -2944,12 +2944,12 @@ bool mprog_wordlist_check( const string & arg, char_data * mob, char_data * acto
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
 
-         strcpy( temp2, arg.c_str(  ) );
+         strncpy( temp2, arg.c_str(  ) );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); ++i )
             dupl[i] = LOWER( dupl[i] );
@@ -3001,12 +3001,12 @@ bool oprog_and_wordlist_check( const string & arg, char_data * mob, char_data * 
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
 
-         strcpy( temp2, arg.c_str(  ) );
+         strncpy( temp2, arg.c_str(  ) );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); ++i )
             dupl[i] = LOWER( dupl[i] );
@@ -3052,12 +3052,12 @@ bool oprog_wordlist_check( const string & arg, char_data * mob, char_data * acto
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
 
-         strcpy( temp2, arg.c_str(  ) );
+         strncpy( temp2, arg.c_str(  ) );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); ++i )
             dupl[i] = LOWER( dupl[i] );
@@ -3116,7 +3116,7 @@ bool rprog_and_wordlist_check( const string & arg, char_data * mob, char_data * 
 
       if( mprg->type == type )
       {
-         strcpy( temp1, mprg->arglist );
+         strncpy( temp1, mprg->arglist );
          list = temp1;
          for( i = 0; i < strlen( list ); ++i )
             list[i] = LOWER( list[i] );
